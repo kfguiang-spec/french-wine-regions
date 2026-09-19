@@ -11,7 +11,8 @@ Related: [WSET tasting guide](https://kfguiang-spec.github.io/wset-tasting-guide
 - List + schematic SVG map of major regions (Bordeaux, Burgundy, Champagne, Loire, Rhône, Alsace, Provence, Languedoc-Roussillon, Beaujolais, Jura, Savoie, Southwest, Corsica)
 - Sort by name, annual mean °C, or growing-season (Apr–Oct) mean °C
 - Detail panel: temperatures, station coordinates, short factual blurb, red/white grapes
-- Quiet UI: white background, black text, Arial/Helvetica
+- Quiet UI: white background, black text, Arial/Helvetica; soft blue→amber map colors for relative warmth
+- **°F / °C toggle** (default °F); `climate.json` remains °C source of truth (display: F = C × 9/5 + 32)
 
 ## Climate methodology (do not invent numbers)
 

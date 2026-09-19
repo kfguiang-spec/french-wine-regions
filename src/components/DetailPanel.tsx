@@ -1,12 +1,13 @@
 import type { RegionView } from '../lib/types'
-import { formatTemp } from '../lib/tempScale'
+import { formatTemp, type TempUnit, unitLabel } from '../lib/tempScale'
 
 type Props = {
   region: RegionView | null
+  unit: TempUnit
   climateMeta: { source: string; methodology: string; fetched_at: string } | null
 }
 
-export function DetailPanel({ region, climateMeta }: Props) {
+export function DetailPanel({ region, unit, climateMeta }: Props) {
   if (!region) {
     return (
       <aside className="detail">
@@ -16,6 +17,7 @@ export function DetailPanel({ region, climateMeta }: Props) {
   }
 
   const c = region.climate
+  const u = unitLabel(unit)
   return (
     <aside className="detail">
       <h2>
@@ -26,16 +28,16 @@ export function DetailPanel({ region, climateMeta }: Props) {
       </h2>
       <p className="blurb">{region.blurb}</p>
 
-      <h3>Temperature</h3>
+      <h3>Temperature ({u})</h3>
       {c ? (
         <dl className="temp-dl">
           <div>
             <dt>Annual mean</dt>
-            <dd>{formatTemp(c.annual_mean_c)}</dd>
+            <dd>{formatTemp(c.annual_mean_c, unit)}</dd>
           </div>
           <div>
             <dt>Growing season ({c.growing_season_months})</dt>
-            <dd>{formatTemp(c.growing_season_mean_c)}</dd>
+            <dd>{formatTemp(c.growing_season_mean_c, unit)}</dd>
           </div>
           <div>
             <dt>Station (representative)</dt>
@@ -56,8 +58,8 @@ export function DetailPanel({ region, climateMeta }: Props) {
       )}
       {climateMeta ? (
         <p className="data-note muted">
-          Means from daily 2&nbsp;m air temperature via Open-Meteo (ERA5). Pre-fetched at build time for
-          reproducibility.
+          Means from daily 2&nbsp;m air temperature via Open-Meteo (ERA5), stored in °C and converted for
+          display ({u}). Pre-fetched at build time for reproducibility.
         </p>
       ) : null}
 

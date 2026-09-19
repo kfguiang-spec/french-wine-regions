@@ -1,15 +1,53 @@
-/** Map growing-season °C to a light choropleth fill (cool → warm). */
-export function tempFill(c: number | null | undefined, selected: boolean): string {
-  if (c == null) return selected ? '#ddd' : '#f5f5f5'
-  // Typical range for our stations: ~15.5–20.8 growing season
-  const t = Math.min(1, Math.max(0, (c - 15) / 6))
-  // grayscale: cooler = lighter, warmer = darker (readable on white)
-  const g = Math.round(245 - t * 130)
-  if (selected) return `rgb(${Math.max(0, g - 40)}, ${Math.max(0, g - 40)}, ${Math.max(0, g - 40)})`
-  return `rgb(${g}, ${g}, ${g})`
+export type TempUnit = 'C' | 'F'
+
+/** Source climate.json stores °C; display conversion only. */
+export function cToF(c: number): number {
+  return (c * 9) / 5 + 32
 }
 
-export function formatTemp(c: number | null | undefined): string {
-  if (c == null || Number.isNaN(c)) return '—'
-  return `${c.toFixed(1)} °C`
+export function toDisplay(c: number | null | undefined, unit: TempUnit): number | null {
+  if (c == null || Number.isNaN(c)) return null
+  return unit === 'F' ? cToF(c) : c
+}
+
+export function formatTemp(c: number | null | undefined, unit: TempUnit): string {
+  const v = toDisplay(c, unit)
+  if (v == null) return '—'
+  return `${v.toFixed(1)} °${unit}`
+}
+
+export function unitLabel(unit: TempUnit): string {
+  return unit === 'F' ? '°F' : '°C'
+}
+
+/**
+ * Soft cool→warm choropleth (light blue → soft amber).
+ * Input is always growing-season °C from climate.json.
+ * Typical station range ~15.5–20.8 °C.
+ */
+export function tempFill(cCelsius: number | null | undefined, selected: boolean): string {
+  if (cCelsius == null) return selected ? '#d8d8d8' : '#f0f0f0'
+  const t = Math.min(1, Math.max(0, (cCelsius - 15) / 6))
+  // Soft blue → soft amber (quiet, readable on white)
+  const stops: [number, number, number][] = [
+    [176, 208, 232], // cool blue
+    [168, 212, 200], // blue-green
+    [232, 220, 168], // soft gold
+    [232, 188, 128], // amber
+    [220, 152, 96], // warm amber
+  ]
+  const seg = t * (stops.length - 1)
+  const i = Math.min(stops.length - 2, Math.floor(seg))
+  const f = seg - i
+  const a = stops[i]
+  const b = stops[i + 1]
+  let r = Math.round(a[0] + (b[0] - a[0]) * f)
+  let g = Math.round(a[1] + (b[1] - a[1]) * f)
+  let bl = Math.round(a[2] + (b[2] - a[2]) * f)
+  if (selected) {
+    r = Math.max(0, r - 28)
+    g = Math.max(0, g - 28)
+    bl = Math.max(0, bl - 28)
+  }
+  return `rgb(${r}, ${g}, ${bl})`
 }

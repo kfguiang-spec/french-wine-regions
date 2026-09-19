@@ -3,6 +3,7 @@ import regionsMeta from './data/regions.json'
 import { DetailPanel } from './components/DetailPanel'
 import { FranceMap } from './components/FranceMap'
 import { RegionList } from './components/RegionList'
+import type { TempUnit } from './lib/tempScale'
 import type { ClimateFile, RegionMeta, RegionView } from './lib/types'
 
 const META = regionsMeta as RegionMeta[]
@@ -13,6 +14,7 @@ export default function App() {
   const [loading, setLoading] = useState(true)
   const [selectedId, setSelectedId] = useState<string | null>('bordeaux')
   const [sortBy, setSortBy] = useState<'name' | 'annual' | 'growing'>('growing')
+  const [unit, setUnit] = useState<TempUnit>('F')
 
   useEffect(() => {
     let cancelled = false
@@ -64,15 +66,34 @@ export default function App() {
       <header className="header">
         <div className="header-row">
           <h1>French wine regions</h1>
-          <p className="tagline">
-            Major AOCs · real climate normals · typical grapes
-          </p>
+          <p className="tagline">Major AOCs · real climate normals · typical grapes</p>
         </div>
-        <nav className="toolbar" aria-label="Related projects">
-          <a href="https://kfguiang-spec.github.io/wset-tasting-guide/">WSET tasting guide</a>
-          <span className="sep">·</span>
-          <a href="https://kfguiang-spec.github.io/grape-lineage/">Grape lineage</a>
-        </nav>
+        <div className="header-controls">
+          <nav className="toolbar" aria-label="Related projects">
+            <a href="https://kfguiang-spec.github.io/wset-tasting-guide/">WSET tasting guide</a>
+            <span className="sep">·</span>
+            <a href="https://kfguiang-spec.github.io/grape-lineage/">Grape lineage</a>
+          </nav>
+          <div className="unit-toggle" role="group" aria-label="Temperature unit">
+            <span className="muted">Temp:</span>
+            <button
+              type="button"
+              className={unit === 'F' ? 'active' : ''}
+              aria-pressed={unit === 'F'}
+              onClick={() => setUnit('F')}
+            >
+              °F
+            </button>
+            <button
+              type="button"
+              className={unit === 'C' ? 'active' : ''}
+              aria-pressed={unit === 'C'}
+              onClick={() => setUnit('C')}
+            >
+              °C
+            </button>
+          </div>
+        </div>
       </header>
 
       {loading ? <p className="banner muted">Loading climate data…</p> : null}
@@ -80,7 +101,7 @@ export default function App() {
 
       <main className="main">
         <section className="map-panel" aria-label="Map">
-          <FranceMap regions={regions} selectedId={selectedId} onSelect={setSelectedId} />
+          <FranceMap regions={regions} selectedId={selectedId} unit={unit} onSelect={setSelectedId} />
           <p className="map-hint muted">
             Markers colored by growing-season mean (Apr–Oct). Click a marker or a row.
           </p>
@@ -91,6 +112,7 @@ export default function App() {
             regions={sorted}
             selectedId={selectedId}
             sortBy={sortBy}
+            unit={unit}
             onSelect={setSelectedId}
             onSort={setSortBy}
           />
@@ -98,6 +120,7 @@ export default function App() {
 
         <DetailPanel
           region={selected}
+          unit={unit}
           climateMeta={
             climate
               ? {
@@ -114,7 +137,7 @@ export default function App() {
         <p>
           Climate: <a href="https://open-meteo.com/">Open-Meteo</a> Historical Weather API (ERA5),
           1991–2020 daily means at representative stations — see{' '}
-          <code>public/data/climate.json</code>.{' '}
+          <code>public/data/climate.json</code> (stored in °C; display converts to °F when selected).{' '}
           {climate ? (
             <>
               Period {climate.regions[0]?.period.start}–{climate.regions[0]?.period.end}.
@@ -123,7 +146,7 @@ export default function App() {
         </p>
         <p className="muted">
           Grapes: curated educational summary (WSET-level classics), not exhaustive plantings. Map
-          outline is schematic.
+          outline is schematic. Soft blue→amber map colors show relative growing-season warmth only.
         </p>
         <p className="muted">
           {climate?.citation ??
