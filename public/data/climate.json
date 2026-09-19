@@ -1,0 +1,321 @@
+{
+  "fetched_at": "2026-09-19T19:58:42.365Z",
+  "source": "Open-Meteo Historical Weather API (ERA5 reanalysis). Daily temperature_2m_mean averaged over 1991–2020.",
+  "attribution": "https://open-meteo.com/",
+  "citation": "Hersbach et al. (2023). ERA5 hourly data on single levels from 1940 to present. ECMWF. https://doi.org/10.24381/cds.adbb2d47 — via Open-Meteo.",
+  "methodology": "For each representative station coordinate, daily 2 m mean air temperature (ERA5) was requested for 1991-01-01 through 2020-12-31. Annual mean = average of all daily means. Growing-season mean = average of daily means where month is April through October (inclusive). Values rounded to 0.1 °C.",
+  "regions": [
+    {
+      "id": "bordeaux",
+      "station": "Bordeaux",
+      "requested": {
+        "lat": 44.8378,
+        "lon": -0.5792
+      },
+      "grid": {
+        "latitude": 44.75,
+        "longitude": -0.5,
+        "elevation_m": 16
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 14.1,
+      "growing_season_mean_c": 18.1,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "burgundy",
+      "station": "Beaune",
+      "requested": {
+        "lat": 47.026,
+        "lon": 4.84
+      },
+      "grid": {
+        "latitude": 47,
+        "longitude": 4.75,
+        "elevation_m": 225
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 12.1,
+      "growing_season_mean_c": 16.7,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "champagne",
+      "station": "Reims",
+      "requested": {
+        "lat": 49.2583,
+        "lon": 4.0317
+      },
+      "grid": {
+        "latitude": 49.25,
+        "longitude": 4,
+        "elevation_m": 94
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 11.3,
+      "growing_season_mean_c": 15.5,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "loire",
+      "station": "Tours",
+      "requested": {
+        "lat": 47.3941,
+        "lon": 0.6848
+      },
+      "grid": {
+        "latitude": 47.5,
+        "longitude": 0.75,
+        "elevation_m": 58
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 12.4,
+      "growing_season_mean_c": 16.4,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "rhone",
+      "station": "Avignon",
+      "requested": {
+        "lat": 43.9493,
+        "lon": 4.8055
+      },
+      "grid": {
+        "latitude": 44,
+        "longitude": 4.75,
+        "elevation_m": 29
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 15.7,
+      "growing_season_mean_c": 20.5,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "alsace",
+      "station": "Colmar",
+      "requested": {
+        "lat": 48.0794,
+        "lon": 7.3586
+      },
+      "grid": {
+        "latitude": 48,
+        "longitude": 7.25,
+        "elevation_m": 196
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 11.6,
+      "growing_season_mean_c": 16.3,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "provence",
+      "station": "Aix-en-Provence",
+      "requested": {
+        "lat": 43.5297,
+        "lon": 5.4474
+      },
+      "grid": {
+        "latitude": 43.5,
+        "longitude": 5.5,
+        "elevation_m": 205
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 14.7,
+      "growing_season_mean_c": 19.3,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "languedoc",
+      "station": "Montpellier",
+      "requested": {
+        "lat": 43.6108,
+        "lon": 3.8767
+      },
+      "grid": {
+        "latitude": 43.5,
+        "longitude": 3.75,
+        "elevation_m": 54
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 15.2,
+      "growing_season_mean_c": 18.9,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "beaujolais",
+      "station": "Villefranche-sur-Saône",
+      "requested": {
+        "lat": 45.9896,
+        "lon": 4.7197
+      },
+      "grid": {
+        "latitude": 46,
+        "longitude": 4.75,
+        "elevation_m": 190
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 13,
+      "growing_season_mean_c": 17.6,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "jura",
+      "station": "Arbois",
+      "requested": {
+        "lat": 46.9036,
+        "lon": 5.7747
+      },
+      "grid": {
+        "latitude": 47,
+        "longitude": 5.75,
+        "elevation_m": 298
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 11.9,
+      "growing_season_mean_c": 16.5,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "savoie",
+      "station": "Chambéry",
+      "requested": {
+        "lat": 45.5646,
+        "lon": 5.9178
+      },
+      "grid": {
+        "latitude": 45.5,
+        "longitude": 6,
+        "elevation_m": 286
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 12.8,
+      "growing_season_mean_c": 17.7,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "southwest",
+      "station": "Cahors",
+      "requested": {
+        "lat": 44.4475,
+        "lon": 1.4408
+      },
+      "grid": {
+        "latitude": 44.5,
+        "longitude": 1.5,
+        "elevation_m": 137
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 13.9,
+      "growing_season_mean_c": 18.1,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "corsica",
+      "station": "Ajaccio",
+      "requested": {
+        "lat": 41.9192,
+        "lon": 8.7386
+      },
+      "grid": {
+        "latitude": 42,
+        "longitude": 8.75,
+        "elevation_m": 9
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 17.3,
+      "growing_season_mean_c": 20.8,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+[
+  {
+    "id": "bordeaux",
+    "name": "Bordeaux",
+    "nameFr": "Bordeaux",
+    "station": "Bordeaux",
+    "lat": 44.8378,
+    "lon": -0.5792,
+    "blurb": "Atlantic maritime climate on the Gironde estuary; Left Bank Cabernet blends and Right Bank Merlot dominate France’s most exported fine-wine region.",
+    "red": ["Cabernet Sauvignon", "Merlot", "Cabernet Franc", "Petit Verdot", "Malbec"],
+    "white": ["Sémillon", "Sauvignon Blanc", "Muscadelle"]
+  },
+  {
+    "id": "burgundy",
+    "name": "Burgundy",
+    "nameFr": "Bourgogne",
+    "station": "Beaune",
+    "lat": 47.026,
+    "lon": 4.84,
+    "blurb": "Continental Côte d’Or and surrounding AOCs; Pinot Noir and Chardonnay define village-to-grand-cru hierarchy from Chablis to Mâconnais.",
+    "red": ["Pinot Noir"],
+    "white": ["Chardonnay", "Aligoté"]
+  },
+  {
+    "id": "champagne",
+    "name": "Champagne",
+    "nameFr": "Champagne",
+    "station": "Reims",
+    "lat": 49.2583,
+    "lon": 4.0317,
+    "blurb": "Cool northern latitude; sparkling wine from base wines of Pinot Noir, Pinot Meunier, and Chardonnay under Appellation Champagne rules.",
+    "red": ["Pinot Noir", "Pinot Meunier"],
+    "white": ["Chardonnay"]
+  },
+  {
+    "id": "loire",
+    "name": "Loire Valley",
+    "nameFr": "Val de Loire",
+    "station": "Tours",
+    "lat": 47.3941,
+    "lon": 0.6848,
+    "blurb": "Long Atlantic-to-continental corridor; Muscadet, Chenin Blanc, Sauvignon Blanc, and Cabernet Franc shift by sub-region from Nantes to Sancerre.",
+    "red": ["Cabernet Franc", "Gamay", "Pinot Noir"],
+    "white": ["Melon de Bourgogne", "Chenin Blanc", "Sauvignon Blanc"]
+  },
+  {
+    "id": "rhone",
+    "name": "Rhône Valley",
+    "nameFr": "Vallée du Rhône",
+    "station": "Avignon",
+    "lat": 43.9493,
+    "lon": 4.8055,
+    "blurb": "Northern Syrah on granite slopes; southern Grenache blends under Mediterranean heat around Châteauneuf-du-Pape and the Côtes du Rhône.",
+    "red": ["Syrah", "Grenache", "Mourvèdre", "Carignan", "Cinsault"],
+    "white": ["Viognier", "Marsanne", "Roussanne", "Grenache Blanc"]
+  },
+  {
+    "id": "alsace",
+    "name": "Alsace",
+    "nameFr": "Alsace",
+    "station": "Colmar",
+    "lat": 48.0794,
+    "lon": 7.3586,
+    "blurb": "Rain-shadowed Rhine flank; aromatic whites (Riesling, Gewurztraminer, Pinot Gris) lead, with Pinot Noir as the main red.",
+    "red": ["Pinot Noir"],
+    "white": ["Riesling", "Gewurztraminer", "Pinot Gris", "Pinot Blanc", "Muscat"]
+  },
+  {
+    "id": "provence",
+    "name": "Provence",
+    "nameFr": "Provence",
+    "station": "Aix-en-Provence",
+    "lat": 43.5297,
+    "lon": 5.4474,
+    "blurb": "Mediterranean coast and hinterland famed for pale dry rosés; Bandol Mourvèdre and coastal whites also feature.",
+    "red": ["Grenache", "Cinsault", "Syrah", "Mourvèdre", "Carignan"],
+    "white": ["Rolle (Vermentino)", "Clairette", "Ugni Blanc"]
+  },
+  {
+    "id": "languedoc",
+    "name": "Languedoc-Roussillon",
+    "nameFr": "Languedoc-Roussillon",
+    "station": "Montpellier",
+    "lat": 43.6108,
+    "lon": 3.8767,
+    "blurb": "France’s largest vineyard area; Mediterranean blends of Grenache, Syrah, and Carignan, plus Picpoul and Muscat near the coast.",
+    "red": ["Grenache", "Syrah", "Carignan", "Mourvèdre", "Cinsault"],
+    "white": ["Picpoul", "Grenache Blanc", "Marsanne", "Muscat", "Vermentino"]
+  },
+  {
+    "id": "beaujolais",
+    "name": "Beaujolais",
+    "nameFr": "Beaujolais",
+    "station": "Villefranche-sur-Saône",
+    "lat": 45.9896,
+    "lon": 4.7197,
+    "blurb": "Granite hills south of Burgundy; Gamay is nearly exclusive for reds, with a little Chardonnay for Beaujolais Blanc.",
+    "red": ["Gamay"],
+    "white": ["Chardonnay"]
+  },
+  {
+    "id": "jura",
+    "name": "Jura",
+    "nameFr": "Jura",
+    "station": "Arbois",
+    "lat": 46.9036,
+    "lon": 5.7747,
+    "blurb": "Cool alpine-foothill AOCs; Savagnin (vin jaune), Poulsard, Trousseau, and Pinot Noir define a distinctive oxidative and sparkling tradition.",
+    "red": ["Poulsard", "Trousseau", "Pinot Noir"],
+    "white": ["Savagnin", "Chardonnay"]
+  },
+  {
+    "id": "savoie",
+    "name": "Savoie",
+    "nameFr": "Savoie",
+    "station": "Chambéry",
+    "lat": 45.5646,
+    "lon": 5.9178,
+    "blurb": "Alpine valley vineyards; Jacquère and Altesse whites dominate, with Mondeuse as the signature red.",
+    "red": ["Mondeuse", "Persan", "Pinot Noir", "Gamay"],
+    "white": ["Jacquère", "Altesse", "Roussette", "Chardonnay"]
+  },
+  {
+    "id": "southwest",
+    "name": "Southwest",
+    "nameFr": "Sud-Ouest",
+    "station": "Cahors",
+    "lat": 44.4475,
+    "lon": 1.4408,
+    "blurb": "Inland basins from Cahors to Madiran and Bergerac; Malbec (Côt), Tannat, and local whites such as Petit Manseng and Len de l’El.",
+    "red": ["Malbec (Côt)", "Tannat", "Merlot", "Cabernet Franc", "Cabernet Sauvignon"],
+    "white": ["Sémillon", "Sauvignon Blanc", "Petit Manseng", "Gros Manseng", "Ugni Blanc"]
+  },
+  {
+    "id": "corsica",
+    "name": "Corsica",
+    "nameFr": "Corse",
+    "station": "Ajaccio",
+    "lat": 41.9192,
+    "lon": 8.7386,
+    "blurb": "Mediterranean island with Nielluccio and Sciaccarello reds and Vermentino (Vermentinu) whites under AOC Corse and village appellations.",
+    "red": ["Nielluccio", "Sciaccarello", "Grenache", "Syrah"],
+    "white": ["Vermentino (Vermentinu)", "Muscat"]
+  }
+]
