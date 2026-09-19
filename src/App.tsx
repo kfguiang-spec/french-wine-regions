@@ -1,17 +1,38 @@
 import { useEffect, useMemo, useState } from 'react'
+import bordeauxMeta from './data/bordeaux-subregions.json'
 import regionsMeta from './data/regions.json'
+import { BordeauxMap } from './components/BordeauxMap'
 import { DetailPanel } from './components/DetailPanel'
 import { FranceMap } from './components/FranceMap'
 import { RegionList } from './components/RegionList'
 import type { TempUnit } from './lib/tempScale'
-import type { ClimateFile, RegionMeta, RegionView } from './lib/types'
+import type { ClimateFile, RegionMeta, RegionView, ViewLevel } from './lib/types'
 
-const META = regionsMeta as RegionMeta[]
+const FRANCE = regionsMeta as RegionMeta[]
+const BORDEAUX = bordeauxMeta as RegionMeta[]
+
+function sortRegions(
+  regions: RegionView[],
+  sortBy: 'name' | 'annual' | 'growing',
+): RegionView[] {
+  const copy = [...regions]
+  copy.sort((a, b) => {
+    if (sortBy === 'name') return a.name.localeCompare(b.name)
+    const av = sortBy === 'annual' ? a.climate?.annual_mean_c : a.climate?.growing_season_mean_c
+    const bv = sortBy === 'annual' ? b.climate?.annual_mean_c : b.climate?.growing_season_mean_c
+    if (av == null && bv == null) return 0
+    if (av == null) return 1
+    if (bv == null) return -1
+    return av - bv
+  })
+  return copy
+}
 
 export default function App() {
   const [climate, setClimate] = useState<ClimateFile | null>(null)
   const [loadError, setLoadError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const [view, setView] = useState<ViewLevel>('france')
   const [selectedId, setSelectedId] = useState<string | null>('bordeaux')
   const [sortBy, setSortBy] = useState<'name' | 'annual' | 'growing'>('growing')
   const [unit, setUnit] = useState<TempUnit>('F')
@@ -38,36 +59,65 @@ export default function App() {
     }
   }, [])
 
-  const regions: RegionView[] = useMemo(() => {
-    const byId = new Map(climate?.regions.map((c) => [c.id, c]) ?? [])
-    return META.map((m) => ({ ...m, climate: byId.get(m.id) ?? null }))
+  const climateById = useMemo(() => {
+    return new Map(climate?.regions.map((c) => [c.id, c]) ?? [])
   }, [climate])
 
-  const sorted = useMemo(() => {
-    const copy = [...regions]
-    copy.sort((a, b) => {
-      if (sortBy === 'name') return a.name.localeCompare(b.name)
-      const av =
-        sortBy === 'annual' ? a.climate?.annual_mean_c : a.climate?.growing_season_mean_c
-      const bv =
-        sortBy === 'annual' ? b.climate?.annual_mean_c : b.climate?.growing_season_mean_c
-      if (av == null && bv == null) return 0
-      if (av == null) return 1
-      if (bv == null) return -1
-      return av - bv
-    })
-    return copy
-  }, [regions, sortBy])
+  const franceRegions: RegionView[] = useMemo(
+    () => FRANCE.map((m) => ({ ...m, climate: climateById.get(m.id) ?? null })),
+    [climateById],
+  )
 
-  const selected = regions.find((r) => r.id === selectedId) ?? null
+  const bordeauxRegions: RegionView[] = useMemo(
+    () => BORDEAUX.map((m) => ({ ...m, climate: climateById.get(m.id) ?? null })),
+    [climateById],
+  )
+
+  const activeList = view === 'france' ? franceRegions : bordeauxRegions
+  const sorted = useMemo(() => sortRegions(activeList, sortBy), [activeList, sortBy])
+  const selected = activeList.find((r) => r.id === selectedId) ?? null
+
+  function enterBordeaux() {
+    setView('bordeaux')
+    setSelectedId(bordeauxRegions[0]?.id ?? 'medoc')
+  }
+
+  function backToFrance() {
+    setView('france')
+    setSelectedId('bordeaux')
+  }
+
+  function handleActivate(id: string) {
+    if (id === 'bordeaux') enterBordeaux()
+  }
 
   return (
     <div className="app">
       <header className="header">
         <div className="header-row">
-          <h1>French wine regions</h1>
-          <p className="tagline">Major AOCs · real climate normals · typical grapes</p>
+          <h1>{view === 'france' ? 'French wine regions' : 'Bordeaux sub-regions'}</h1>
+          <p className="tagline">
+            {view === 'france'
+              ? 'Major AOCs · real climate normals · typical grapes'
+              : 'PoC drill-down · Open-Meteo station temps · typical grapes'}
+          </p>
         </div>
+        <nav className="breadcrumb" aria-label="Breadcrumb">
+          {view === 'france' ? (
+            <span>France</span>
+          ) : (
+            <>
+              <button type="button" className="linkish" onClick={backToFrance}>
+                France
+              </button>
+              <span className="sep">→</span>
+              <span>Bordeaux</span>
+              <button type="button" className="back-btn" onClick={backToFrance}>
+                ← Back
+              </button>
+            </>
+          )}
+        </nav>
         <div className="header-controls">
           <nav className="toolbar" aria-label="Related projects">
             <a href="https://kfguiang-spec.github.io/wset-tasting-guide/">WSET tasting guide</a>
@@ -101,9 +151,26 @@ export default function App() {
 
       <main className="main">
         <section className="map-panel" aria-label="Map">
-          <FranceMap regions={regions} selectedId={selectedId} unit={unit} onSelect={setSelectedId} />
+          {view === 'france' ? (
+            <FranceMap
+              regions={franceRegions}
+              selectedId={selectedId}
+              unit={unit}
+              onSelect={setSelectedId}
+              onActivate={handleActivate}
+            />
+          ) : (
+            <BordeauxMap
+              regions={bordeauxRegions}
+              selectedId={selectedId}
+              unit={unit}
+              onSelect={setSelectedId}
+            />
+          )}
           <p className="map-hint muted">
-            Markers colored by growing-season mean (Apr–Oct). Click a marker or a row.
+            {view === 'france'
+              ? 'Single-click selects. Double-click Bordeaux (or use Explore) for sub-regions.'
+              : 'Schematic Gironde map — markers by growing-season mean. Click a sub-region.'}
           </p>
         </section>
 
@@ -115,12 +182,16 @@ export default function App() {
             unit={unit}
             onSelect={setSelectedId}
             onSort={setSortBy}
+            onActivate={view === 'france' ? handleActivate : undefined}
+            activatableIds={view === 'france' ? ['bordeaux'] : []}
           />
         </section>
 
         <DetailPanel
           region={selected}
           unit={unit}
+          showExploreBordeaux={view === 'france' && selectedId === 'bordeaux'}
+          onExploreBordeaux={enterBordeaux}
           climateMeta={
             climate
               ? {
@@ -136,8 +207,7 @@ export default function App() {
       <footer className="footer">
         <p>
           Climate: <a href="https://open-meteo.com/">Open-Meteo</a> Historical Weather API (ERA5),
-          1991–2020 daily means at representative stations — see{' '}
-          <code>public/data/climate.json</code> (stored in °C; display converts to °F when selected).{' '}
+          1991–2020 daily means — <code>public/data/climate.json</code> (stored °C; display converts).{' '}
           {climate ? (
             <>
               Period {climate.regions[0]?.period.start}–{climate.regions[0]?.period.end}.
@@ -145,8 +215,8 @@ export default function App() {
           ) : null}
         </p>
         <p className="muted">
-          Grapes: curated educational summary (WSET-level classics), not exhaustive plantings. Map
-          outline is schematic. Soft blue→amber map colors show relative growing-season warmth only.
+          Grapes: curated educational summary. Bordeaux drill-down is a PoC (Médoc point = Pauillac).
+          Soft blue→amber colors show relative growing-season warmth.
         </p>
         <p className="muted">
           {climate?.citation ??

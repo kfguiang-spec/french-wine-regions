@@ -5,9 +5,17 @@ type Props = {
   region: RegionView | null
   unit: TempUnit
   climateMeta: { source: string; methodology: string; fetched_at: string } | null
+  onExploreBordeaux?: () => void
+  showExploreBordeaux?: boolean
 }
 
-export function DetailPanel({ region, unit, climateMeta }: Props) {
+export function DetailPanel({
+  region,
+  unit,
+  climateMeta,
+  onExploreBordeaux,
+  showExploreBordeaux,
+}: Props) {
   if (!region) {
     return (
       <aside className="detail">
@@ -28,6 +36,15 @@ export function DetailPanel({ region, unit, climateMeta }: Props) {
       </h2>
       <p className="blurb">{region.blurb}</p>
 
+      {showExploreBordeaux && onExploreBordeaux ? (
+        <p className="explore-row">
+          <button type="button" className="explore-btn" onClick={onExploreBordeaux}>
+            Explore Bordeaux →
+          </button>
+          <span className="muted explore-hint">or double-click the map/list marker</span>
+        </p>
+      ) : null}
+
       <h3>Temperature ({u})</h3>
       {c ? (
         <dl className="temp-dl">
@@ -42,7 +59,7 @@ export function DetailPanel({ region, unit, climateMeta }: Props) {
           <div>
             <dt>Station (representative)</dt>
             <dd>
-              {c.station} ({c.requested.lat.toFixed(2)}°N, {c.requested.lon.toFixed(2)}°
+              {c.station} ({c.requested.lat.toFixed(2)}°N, {Math.abs(c.requested.lon).toFixed(2)}°
               {c.requested.lon >= 0 ? 'E' : 'W'})
             </dd>
           </div>
@@ -64,23 +81,33 @@ export function DetailPanel({ region, unit, climateMeta }: Props) {
       ) : null}
 
       <h3>Typical grape varieties</h3>
-      <p className="data-note muted">Educational summary of primary / classic varieties — not an exhaustive planting list.</p>
+      <p className="data-note muted">
+        Educational summary of primary / classic varieties — not an exhaustive planting list.
+      </p>
       <div className="grape-cols">
         <div>
           <h4>Red</h4>
-          <ul>
-            {region.red.map((g) => (
-              <li key={g}>{g}</li>
-            ))}
-          </ul>
+          {region.red.length ? (
+            <ul>
+              {region.red.map((g) => (
+                <li key={g}>{g}</li>
+              ))}
+            </ul>
+          ) : (
+            <p className="muted">— (primarily white / sweet white)</p>
+          )}
         </div>
         <div>
           <h4>White</h4>
-          <ul>
-            {region.white.map((g) => (
-              <li key={g}>{g}</li>
-            ))}
-          </ul>
+          {region.white.length ? (
+            <ul>
+              {region.white.map((g) => (
+                <li key={g}>{g}</li>
+              ))}
+            </ul>
+          ) : (
+            <p className="muted">— (primarily red)</p>
+          )}
         </div>
       </div>
     </aside>

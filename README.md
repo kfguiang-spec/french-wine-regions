@@ -12,6 +12,7 @@ Related: [WSET tasting guide](https://kfguiang-spec.github.io/wset-tasting-guide
 - Sort by name, annual mean °C, or growing-season (Apr–Oct) mean °C
 - Detail panel: temperatures, station coordinates, short factual blurb, red/white grapes
 - Quiet UI: white background, black text, Arial/Helvetica; soft blue→amber map colors for relative warmth
+- **Bordeaux drill-down (PoC):** double-click Bordeaux (map/list) or use **Explore Bordeaux →** in the detail panel; breadcrumb France → Bordeaux
 - **°F / °C toggle** (default °F); `climate.json` remains °C source of truth (display: F = C × 9/5 + 32)
 
 ## Climate methodology (do not invent numbers)
@@ -26,6 +27,7 @@ Temperatures are **pre-fetched at build time** into `public/data/climate.json` s
 | Period | **1991-01-01 – 2020-12-31** (30-year climate normal window) |
 | Annual mean | Average of all daily means in the period |
 | Growing-season mean | Average of daily means for months **April–October** inclusive |
+| Bordeaux subs | Médoc (Pauillac), Graves (Podensac), Pessac-Léognan (Léognan), Sauternes, Saint-Émilion, Pomerol, Entre-Deux-Mers (Créon), Blaye/Bourg (Blaye) |
 | Stations | Representative city / town per region (e.g. Bordeaux, Beaune, Reims, Tours, Avignon, Colmar, Aix-en-Provence, Montpellier, Villefranche-sur-Saône, Arbois, Chambéry, Cahors, Ajaccio) |
 
 Refresh data:

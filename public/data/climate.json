@@ -1,9 +1,9 @@
 {
-  "fetched_at": "2026-09-19T19:58:42.365Z",
+  "fetched_at": "2026-09-19T20:10:48.673Z",
   "source": "Open-Meteo Historical Weather API (ERA5 reanalysis). Daily temperature_2m_mean averaged over 1991–2020.",
   "attribution": "https://open-meteo.com/",
   "citation": "Hersbach et al. (2023). ERA5 hourly data on single levels from 1940 to present. ECMWF. https://doi.org/10.24381/cds.adbb2d47 — via Open-Meteo.",
-  "methodology": "For each representative station coordinate, daily 2 m mean air temperature (ERA5) was requested for 1991-01-01 through 2020-12-31. Annual mean = average of all daily means. Growing-season mean = average of daily means where month is April through October (inclusive). Values rounded to 0.1 °C.",
+  "methodology": "For each representative station coordinate, daily 2 m mean air temperature (ERA5) was requested for 1991-01-01 through 2020-12-31. Annual mean = average of all daily means. Growing-season mean = average of daily means where month is April through October (inclusive). Values rounded to 0.1 °C. Includes France-level regions and Bordeaux sub-regions.",
   "regions": [
     {
       "id": "bordeaux",
@@ -313,6 +313,198 @@
       "units": "°C",
       "annual_mean_c": 17.3,
       "growing_season_mean_c": 20.8,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "medoc",
+      "station": "Pauillac",
+      "requested": {
+        "lat": 45.1992,
+        "lon": -0.7489
+      },
+      "grid": {
+        "latitude": 45.25,
+        "longitude": -0.75,
+        "elevation_m": 16
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 13.9,
+      "growing_season_mean_c": 17.7,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "graves",
+      "station": "Podensac",
+      "requested": {
+        "lat": 44.6517,
+        "lon": -0.3556
+      },
+      "grid": {
+        "latitude": 44.75,
+        "longitude": -0.25,
+        "elevation_m": 13
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 14.1,
+      "growing_season_mean_c": 18.2,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "pessac-leognan",
+      "station": "Léognan",
+      "requested": {
+        "lat": 44.7356,
+        "lon": -0.5983
+      },
+      "grid": {
+        "latitude": 44.75,
+        "longitude": -0.5,
+        "elevation_m": 41
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 13.9,
+      "growing_season_mean_c": 17.9,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "sauternes",
+      "station": "Sauternes",
+      "requested": {
+        "lat": 44.5317,
+        "lon": -0.3417
+      },
+      "grid": {
+        "latitude": 44.5,
+        "longitude": -0.25,
+        "elevation_m": 63
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 14,
+      "growing_season_mean_c": 18,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "saint-emilion",
+      "station": "Saint-Émilion",
+      "requested": {
+        "lat": 44.8936,
+        "lon": -0.1556
+      },
+      "grid": {
+        "latitude": 45,
+        "longitude": -0.25,
+        "elevation_m": 85
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 13.6,
+      "growing_season_mean_c": 17.6,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "pomerol",
+      "station": "Pomerol",
+      "requested": {
+        "lat": 44.9331,
+        "lon": -0.2042
+      },
+      "grid": {
+        "latitude": 45,
+        "longitude": -0.25,
+        "elevation_m": 32
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 13.9,
+      "growing_season_mean_c": 17.9,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "entre-deux-mers",
+      "station": "Créon",
+      "requested": {
+        "lat": 44.7747,
+        "lon": -0.3481
+      },
+      "grid": {
+        "latitude": 44.75,
+        "longitude": -0.25,
+        "elevation_m": 105
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 13.5,
+      "growing_season_mean_c": 17.6,
+      "growing_season_months": "Apr–Oct",
+      "sample_days": 10958,
+      "growing_season_days": 6420
+    },
+    {
+      "id": "blaye-bourg",
+      "station": "Blaye",
+      "requested": {
+        "lat": 45.1278,
+        "lon": -0.6622
+      },
+      "grid": {
+        "latitude": 45.25,
+        "longitude": -0.75,
+        "elevation_m": 10
+      },
+      "period": {
+        "start": "1991-01-01",
+        "end": "2020-12-31"
+      },
+      "model": "era5",
+      "units": "°C",
+      "annual_mean_c": 13.9,
+      "growing_season_mean_c": 17.8,
       "growing_season_months": "Apr–Oct",
       "sample_days": 10958,
       "growing_season_days": 6420

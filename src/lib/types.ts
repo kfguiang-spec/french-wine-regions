@@ -8,6 +8,7 @@ export type RegionMeta = {
   blurb: string
   red: string[]
   white: string[]
+  parentId?: string
 }
 
 export type ClimateRegion = {
@@ -37,3 +38,5 @@ export type ClimateFile = {
 export type RegionView = RegionMeta & {
   climate: ClimateRegion | null
 }
+
+export type ViewLevel = 'france' | 'bordeaux'

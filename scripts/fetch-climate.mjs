@@ -1,8 +1,7 @@
 /**
- * Pre-fetch Open-Meteo Historical Weather (ERA5) daily means for wine regions.
- * Computes annual mean °C and growing-season (Apr–Oct) mean for 1991–2020.
- * Batches locations to respect free-tier rate limits.
- * Output: public/data/climate.json
+ * Pre-fetch Open-Meteo Historical Weather (ERA5) daily means.
+ * Reads src/data/regions.json + src/data/bordeaux-subregions.json
+ * Output: public/data/climate.json (all ids, °C)
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
@@ -10,7 +9,10 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
-const regions = JSON.parse(readFileSync(join(root, 'src/data/regions.json'), 'utf8'))
+
+const france = JSON.parse(readFileSync(join(root, 'src/data/regions.json'), 'utf8'))
+const bordeaux = JSON.parse(readFileSync(join(root, 'src/data/bordeaux-subregions.json'), 'utf8'))
+const locations = [...france, ...bordeaux]
 
 const START = '1991-01-01'
 const END = '2020-12-31'
@@ -98,8 +100,23 @@ async function fetchWithRetry(region) {
 }
 
 async function main() {
+  // Prefer merging with existing climate.json for ids we already have (skip re-fetch)
+  const outPath = join(root, 'public/data/climate.json')
+  let existing = { regions: [] }
+  try {
+    existing = JSON.parse(readFileSync(outPath, 'utf8'))
+  } catch {
+    /* fresh */
+  }
+  const byId = new Map((existing.regions || []).map((r) => [r.id, r]))
+
   const results = []
-  for (const region of regions) {
+  for (const region of locations) {
+    if (byId.has(region.id) && byId.get(region.id).annual_mean_c != null) {
+      console.log(`Keeping cached ${region.id}`)
+      results.push(byId.get(region.id))
+      continue
+    }
     results.push(await fetchWithRetry(region))
     await new Promise((r) => setTimeout(r, 8000))
   }
@@ -111,17 +128,16 @@ async function main() {
     citation:
       'Hersbach et al. (2023). ERA5 hourly data on single levels from 1940 to present. ECMWF. https://doi.org/10.24381/cds.adbb2d47 — via Open-Meteo.',
     methodology:
-      'For each representative station coordinate, daily 2 m mean air temperature (ERA5) was requested for 1991-01-01 through 2020-12-31. Annual mean = average of all daily means. Growing-season mean = average of daily means where month is April through October (inclusive). Values rounded to 0.1 °C.',
+      'For each representative station coordinate, daily 2 m mean air temperature (ERA5) was requested for 1991-01-01 through 2020-12-31. Annual mean = average of all daily means. Growing-season mean = average of daily means where month is April through October (inclusive). Values rounded to 0.1 °C. Includes France-level regions and Bordeaux sub-regions.',
     regions: results,
   }
 
-  const outPath = join(root, 'public/data/climate.json')
   mkdirSync(dirname(outPath), { recursive: true })
   writeFileSync(outPath, JSON.stringify(out, null, 2) + '\n')
-  console.log(`Wrote ${outPath}`)
+  console.log(`Wrote ${outPath} (${results.length} locations)`)
   for (const r of results) {
     console.log(
-      `  ${r.id.padEnd(12)} ann=${r.annual_mean_c}°C  grow=${r.growing_season_mean_c}°C  (${r.station})`,
+      `  ${r.id.padEnd(18)} ann=${r.annual_mean_c}°C  grow=${r.growing_season_mean_c}°C  (${r.station})`,
     )
   }
 }

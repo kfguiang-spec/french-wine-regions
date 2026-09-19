@@ -1,0 +1,98 @@
+[
+  {
+    "id": "medoc",
+    "parentId": "bordeaux",
+    "name": "Médoc",
+    "nameFr": "Médoc",
+    "station": "Pauillac",
+    "lat": 45.1992,
+    "lon": -0.7489,
+    "blurb": "Left Bank peninsula north of Bordeaux; gravel soils and Cabernet-led blends. Climate point is Pauillac (also stands in for Haut-Médoc / communal AOCs such as Margaux, Saint-Julien, Saint-Estèphe).",
+    "red": ["Cabernet Sauvignon", "Merlot", "Cabernet Franc", "Petit Verdot"],
+    "white": []
+  },
+  {
+    "id": "graves",
+    "parentId": "bordeaux",
+    "name": "Graves",
+    "nameFr": "Graves",
+    "station": "Podensac",
+    "lat": 44.6517,
+    "lon": -0.3556,
+    "blurb": "Gravelly Left Bank south of the city; historic source of both red Bordeaux blends and dry whites (Sauvignon Blanc–Sémillon).",
+    "red": ["Cabernet Sauvignon", "Merlot", "Cabernet Franc"],
+    "white": ["Sauvignon Blanc", "Sémillon", "Muscadelle"]
+  },
+  {
+    "id": "pessac-leognan",
+    "parentId": "bordeaux",
+    "name": "Pessac-Léognan",
+    "nameFr": "Pessac-Léognan",
+    "station": "Léognan",
+    "lat": 44.7356,
+    "lon": -0.5983,
+    "blurb": "Northern Graves AOC around the city suburbs; classified growths for reds and age-worthy dry whites (e.g. Haut-Brion, Domaine de Chevalier).",
+    "red": ["Cabernet Sauvignon", "Merlot", "Cabernet Franc"],
+    "white": ["Sauvignon Blanc", "Sémillon"]
+  },
+  {
+    "id": "sauternes",
+    "parentId": "bordeaux",
+    "name": "Sauternes / Barsac",
+    "nameFr": "Sauternes / Barsac",
+    "station": "Sauternes",
+    "lat": 44.5317,
+    "lon": -0.3417,
+    "blurb": "Cirón–Garonne mist belt for noble-rot sweet wines; Barsac is the adjacent commune AOC with a similar style. Station: Sauternes village.",
+    "red": [],
+    "white": ["Sémillon", "Sauvignon Blanc", "Muscadelle"]
+  },
+  {
+    "id": "saint-emilion",
+    "parentId": "bordeaux",
+    "name": "Saint-Émilion",
+    "nameFr": "Saint-Émilion",
+    "station": "Saint-Émilion",
+    "lat": 44.8936,
+    "lon": -0.1556,
+    "blurb": "Right Bank limestone plateau and côtes; Merlot-dominant blends with Cabernet Franc, plus satellites under related AOCs.",
+    "red": ["Merlot", "Cabernet Franc", "Cabernet Sauvignon"],
+    "white": []
+  },
+  {
+    "id": "pomerol",
+    "parentId": "bordeaux",
+    "name": "Pomerol",
+    "nameFr": "Pomerol",
+    "station": "Pomerol",
+    "lat": 44.9331,
+    "lon": -0.2042,
+    "blurb": "Small Right Bank plateau of clay and gravel; Merlot-led wines (often with Cabernet Franc), no official classification.",
+    "red": ["Merlot", "Cabernet Franc"],
+    "white": []
+  },
+  {
+    "id": "entre-deux-mers",
+    "parentId": "bordeaux",
+    "name": "Entre-Deux-Mers",
+    "nameFr": "Entre-Deux-Mers",
+    "station": "Créon",
+    "lat": 44.7747,
+    "lon": -0.3481,
+    "blurb": "Wedge between Garonne and Dordogne; AOC name is mainly for dry whites, while reds often label as Bordeaux / Bordeaux Supérieur. Station: Créon.",
+    "red": ["Merlot", "Cabernet Sauvignon", "Cabernet Franc"],
+    "white": ["Sauvignon Blanc", "Sémillon", "Muscadelle"]
+  },
+  {
+    "id": "blaye-bourg",
+    "parentId": "bordeaux",
+    "name": "Blaye / Bourg",
+    "nameFr": "Blaye / Bourg",
+    "station": "Blaye",
+    "lat": 45.1278,
+    "lon": -0.6622,
+    "blurb": "Right-bank AOCs facing the Médoc across the Gironde; Côtes de Blaye and Côtes de Bourg reds (Merlot-led) plus some whites. Climate point: Blaye.",
+    "red": ["Merlot", "Cabernet Sauvignon", "Cabernet Franc", "Malbec"],
+    "white": ["Sauvignon Blanc", "Sémillon", "Ugni Blanc"]
+  }
+]

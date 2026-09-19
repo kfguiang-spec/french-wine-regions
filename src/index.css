@@ -305,3 +305,58 @@ h4 {
 .footer code {
   font-size: 0.85em;
 }
+
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.55rem;
+  margin: 0.35rem 0 0.65rem;
+  font-size: 0.9rem;
+}
+
+button.linkish {
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  background: transparent;
+}
+
+button.linkish:hover {
+  text-decoration-thickness: 2px;
+}
+
+.back-btn {
+  margin-left: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.explore-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0.75rem 0 0.25rem;
+}
+
+.explore-btn {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+  padding: 0.4rem 0.75rem;
+}
+
+.explore-btn:hover {
+  background: #333;
+  border-color: #333;
+}
+
+.explore-hint {
+  font-size: 0.85rem;
+}
+
+.drill-hint {
+  font-weight: 400;
+}
